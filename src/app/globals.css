@@ -1,0 +1,173 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* No `.dark` class is ever set — the clinic design is light-only — so binding
+   the variant to a class keeps `dark:` utilities in shadcn's components inert. */
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   shadcn semantic tokens, mapped to the clinic palette.
+
+   These drive every shadcn component (Button, Input, Select, Calendar, …) and
+   also feed the `@theme inline` block below, so `bg-primary` resolves to the
+   clinic blue rather than shadcn's default near-black.
+   ========================================================================== */
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #ffffff;
+  --foreground: #1f2d3d;
+
+  --card: #ffffff;
+  --card-foreground: #1f2d3d;
+  --popover: #ffffff;
+  --popover-foreground: #1f2d3d;
+
+  --primary: #0a6ebd;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f5faff;
+  --secondary-foreground: #0a6ebd;
+
+  --muted: #f5faff;
+  --muted-foreground: #9aa5b1;
+
+  --accent: #eef7ff;
+  --accent-foreground: #0a6ebd;
+
+  --destructive: #d13b4a;
+
+  --border: #e4edf8;
+  --input: #e4edf8;
+  --ring: #0a6ebd;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* ==========================================================================
+   Clinic-specific tokens layered on top
+   ========================================================================== */
+
+@theme {
+  --color-primary-dark: #085ea4;
+  --color-pink: #e84f7d;
+  /* `ink` is heading text, `body` is paragraph text. */
+  --color-ink: #1f2d3d;
+  --color-body: #566573;
+  --color-mist: #f5faff;
+  --color-line: #e4edf8;
+  --color-navy: #10253f;
+  /* Filled rating stars; unfilled ones use `line`. */
+  --color-star: #f5a623;
+
+  --font-sans: var(--font-inter), Inter, sans-serif;
+  --font-display: var(--font-poppins), Poppins, sans-serif;
+
+  --shadow-card: 0 10px 30px rgb(0 0 0 / 0.08);
+  --shadow-panel: 0 20px 50px rgb(0 0 0 / 0.12);
+  --radius-card: 16px;
+
+  /* Min-width mirrors of the original max-width breakpoints, so the layout
+     switches at exactly the same widths. lg=1101px is where the desktop nav
+     stops fitting — iPad Pro 12.9" is 1024px wide in portrait. */
+  --breakpoint-sm: 481px;
+  --breakpoint-md: 769px;
+  --breakpoint-lg: 1101px;
+  --breakpoint-xl: 1201px;
+
+  --animate-shimmer: shimmer 1.3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* `clip`, not `hidden` — `hidden` would make this a scroll container,
+       which breaks the sticky header and cuts the page short on iPadOS. */
+    overflow-x: clip;
+  }
+
+  /* Body copy keeps its own softer grey; `--foreground` (ink) is reserved for
+     headings and for the text inside shadcn controls. */
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-body);
+    background: var(--color-background);
+    line-height: 1.7;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :where(a, button, input, select, textarea):focus-visible {
+    outline: 3px solid rgb(10 110 189 / 0.45);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Page gutter: capped at 1200px, 92% below that. */
+@utility container-page {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+}
