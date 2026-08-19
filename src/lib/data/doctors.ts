@@ -20,11 +20,14 @@ export const doctors: Doctor[] = [
     qualifications: ["MBBS", "MD (Paediatrics)"],
     experienceYears: 12,
     image: "/images/dr.sayan.jpeg",
-    department: "General Medicine",
+    department: "Pediatrics",
     description:
-      "An experienced and caring paediatrician at Khardah Wellness Health Point, consulting for the good health and proper development of your child. Child-friendly care, complete growth monitoring and compassionate consultation. Available Monday, Thursday and Saturday, on appointment only.",
+      "An experienced and caring paediatrician at Khardah Wellness Health Point, consulting for the good health and proper development of your child. Child-friendly care, complete growth monitoring and compassionate consultation. Available Tuesday, Thursday and Saturday, on appointment only.",
     languages: ["English", "Hindi", "Bengali"],
-    availableDays: ["Monday", "Thursday", "Saturday"],
+    availability: {
+      slots: [{ days: ["Tuesday", "Thursday", "Saturday"] }],
+      appointmentOnly: true,
+    },
     // consultationFee: 600,
   },
   {
@@ -37,9 +40,17 @@ export const doctors: Doctor[] = [
     image: "/images/dr.sayantani.jpeg",
     department: "Gynecology",
     description:
-      "Trusted and compassionate gynaecological care — from routine check-ups to specialised advice. Expert gynaecological care, compassionate consultation and personalised women's healthcare. Available Tuesday, Wednesday, Friday and Saturday.",
+      "Trusted and compassionate gynaecological care — from routine check-ups to specialised advice. Expert gynaecological care, compassionate consultation and personalised women's healthcare. Available Tuesday, Wednesday, Friday, Saturday and Sunday evenings, by appointment only.",
     languages: ["English", "Hindi", "Bengali"],
-    availableDays: ["Tuesday", "Wednesday", "Friday", "Saturday"],
+    availability: {
+      slots: [
+        {
+          days: ["Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"],
+          session: "Evening",
+        },
+      ],
+      appointmentOnly: true,
+    },
     // consultationFee: 700,
   },
   {
@@ -50,11 +61,19 @@ export const doctors: Doctor[] = [
     qualifications: ["MBBS", "MS (ENT)"],
     experienceYears: 8,
     image: "/images/dr.riya.jpeg",
-    department: "General Medicine",
+    department: "ENT",
     description:
-      "An experienced specialist consulting regularly at Khardah Wellness Health Point, with modern solutions for ear, nose, throat and head-and-neck problems. MBBS (Hons), MSc, DNB. Available on weekdays, by appointment only.",
+      "An experienced specialist consulting regularly at Khardah Wellness Health Point, with modern solutions for ear, nose, throat and head-and-neck problems. MBBS (Hons), MSc, DNB. Available Tuesday, Wednesday, Friday, Saturday and Sunday evenings, by appointment only.",
     languages: ["English", "Hindi", "Bengali"],
-    availableDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    availability: {
+      slots: [
+        {
+          days: ["Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"],
+          session: "Evening",
+        },
+      ],
+      appointmentOnly: true,
+    },
     // consultationFee: 600,
   },
   {
@@ -65,11 +84,15 @@ export const doctors: Doctor[] = [
     qualifications: ["MBBS", "MS (General Surgery)", "FMAS"],
     experienceYears: 18,
     image: "/images/dr-manas.jpeg",
-    department: "Orthopedics",
+    department: "Surgery",
     description:
-      "An experienced general and laparoscopic surgeon. MBBS, MS (General Surgery), DNB (Surgery); Fellowship in Minimal Access Surgery (FMAS); Fellow of the Association of Surgeons of India (FAIS). Registration no. 72493 (WBMC).",
+      "An experienced general and laparoscopic surgeon. MBBS, MS (General Surgery), DNB (Surgery); Fellowship in Minimal Access Surgery (FMAS); Fellow of the Association of Surgeons of India (FAIS). Registration no. 72493 (WBMC). Available by appointment only.",
     languages: ["English", "Hindi", "Bengali"],
-    availableDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    availability: {
+      slots: [],
+      appointmentOnly: true,
+      note: "No fixed clinic days — consultations are arranged individually to suit you.",
+    },
     // consultationFee: 800,
   },
   {
@@ -80,11 +103,17 @@ export const doctors: Doctor[] = [
     qualifications: ["MBBS", "MD (General Medicine)", "PGDip (Diabetology)"],
     experienceYears: 14,
     image: "/images/dr.ayan.jpeg",
-    department: "General Medicine",
+    department: "Diabetology",
     description:
-      "Physician and diabetologist — from everyday physical complaints through to blood sugar control, expert advice for a healthy, worry-free life. Diabetes management, lifestyle disorder care and personalised treatment. Available Monday and Tuesday.",
+      "Physician and diabetologist — from everyday physical complaints through to blood sugar control, expert advice for a healthy, worry-free life. Diabetes management, lifestyle disorder care and personalised treatment. Available Monday and Tuesday, and on Wednesday mornings, by appointment only.",
     languages: ["English", "Hindi", "Bengali"],
-    availableDays: ["Monday", "Tuesday"],
+    availability: {
+      slots: [
+        { days: ["Monday", "Tuesday"] },
+        { days: ["Wednesday"], session: "Morning" },
+      ],
+      appointmentOnly: true,
+    },
     // consultationFee: 650,
   },
 ];

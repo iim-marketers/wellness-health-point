@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import DoctorAvailability from "@/components/doctors/DoctorAvailability";
 import { ButtonLink } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
@@ -58,6 +58,12 @@ export async function generateMetadata(
 const SUBHEADING =
   "mt-6.5 mb-3 font-display text-[1.2rem] font-semibold text-ink";
 
+/** "Dr. Sayan Bose" -> "Dr. Bose", for buttons and running text. */
+function shortName(name: string): string {
+  const parts = name.split(" ");
+  return parts.length > 1 ? `${parts[0]} ${parts.at(-1)}` : name;
+}
+
 export default async function DoctorDetailPage(
   props: PageProps<"/doctors/[id]">,
 ) {
@@ -94,12 +100,19 @@ export default async function DoctorDetailPage(
             <h3 className={SUBHEADING}>About</h3>
             <p>{doctor.description}</p>
 
+            <div className="mt-6.5">
+              <DoctorAvailability
+                availability={doctor.availability}
+                doctorName={shortName(doctor.name)}
+              />
+            </div>
+
             <div className="mt-7.5 flex flex-wrap items-center justify-center gap-3.5 md:justify-start">
               <ButtonLink
                 href={`/appointment?doctor=${doctor.id}`}
                 block={false}
               >
-                Book with Dr. {doctor.name.split(" ")[1] ?? doctor.name}
+                Book with {shortName(doctor.name)}
               </ButtonLink>
             </div>
           </Reveal>

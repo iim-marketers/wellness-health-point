@@ -19,10 +19,11 @@ export const site = {
     "Wellness Health Point — compassionate healthcare with experienced doctors, modern diagnostics and patient-focused treatment.",
   phonePrimary: "+91 6291664625",
   phoneSecondary: "+91 9836406226",
-  email: "thewellnesshealthpoint@gmail.com",
-  address: "Pansila, Khardah",
-  hours: "Mon–Sat: 9 AM – 8 PM",
-  hoursNote: "Sunday: Emergency Only",
+  email:
+    process.env.NEXT_PUBLIC_CLINIC_EMAIL || "thewellnesshealthpoint@gmail.com",
+  address: process.env.NEXT_PUBLIC_CLINIC_ADDRESS || "Pansila, Khardah",
+  hours: process.env.NEXT_PUBLIC_CLINIC_HOURS || "Mon–Sun: 9 AM – 8 PM",
+  // hoursNote: "Sunday: Emergency Only",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916291664625",
   /** Social profiles — set to "" to hide the icon in the footer. */
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
