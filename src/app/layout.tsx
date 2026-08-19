@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Noto_Sans_Bengali, Poppins } from "next/font/google";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./globals.css";
@@ -22,6 +22,14 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   variable: "--font-poppins",
+  display: "swap",
+});
+
+/** Only the Bengali team panel on /doctors uses this. */
+const notoBengali = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  weight: ["400", "600", "700"],
+  variable: "--font-noto-bengali",
   display: "swap",
 });
 
@@ -94,7 +102,12 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={cn(inter.variable, poppins.variable, "font-sans")}
+      className={cn(
+        inter.variable,
+        poppins.variable,
+        notoBengali.variable,
+        "font-sans",
+      )}
     >
       <head>
         <noscript>

@@ -18,7 +18,8 @@ export function LoadingBlock({ label = "Loading…" }: { label?: string }) {
   );
 }
 
-const SHIMMER =
+/** Exported so image placeholders elsewhere shimmer identically. */
+export const SHIMMER =
   "animate-shimmer bg-[linear-gradient(90deg,#eef2f7_25%,#f7fafd_37%,#eef2f7_63%)] bg-[length:400%_100%] rounded-lg";
 
 /** Card-shaped placeholder matching the doctor grid's layout. */
@@ -42,6 +43,40 @@ export function DoctorGridSkeleton({ count = 5 }: { count?: number }) {
       {Array.from({ length: count }, (_, index) => (
         <DoctorCardSkeleton key={index} />
       ))}
+    </div>
+  );
+}
+
+/**
+ * Stand-in for a single doctor's profile, laid out like the real page — the
+ * portrait card on the left, then heading, about text, sitting days and the
+ * booking button — so nothing jumps when the content arrives.
+ */
+export function DoctorDetailSkeleton() {
+  return (
+    <div
+      aria-hidden="true"
+      className="grid items-start gap-7.5 lg:grid-cols-[320px_1fr] lg:gap-12.5"
+    >
+      <div className="mx-auto w-full max-w-80 rounded-card bg-white p-6 shadow-card lg:mx-0 lg:max-w-none">
+        <div className={`${SHIMMER} aspect-square w-full rounded-card`} />
+      </div>
+
+      <div>
+        <div className={`${SHIMMER} h-8 w-[75%] max-w-90`} />
+        <div className={`${SHIMMER} mt-3 h-4.5 w-[45%] max-w-55`} />
+
+        <div className={`${SHIMMER} mt-8 h-5 w-24`} />
+        <div className="mt-3.5 space-y-2.5">
+          <div className={`${SHIMMER} h-3.5 w-full`} />
+          <div className={`${SHIMMER} h-3.5 w-full`} />
+          <div className={`${SHIMMER} h-3.5 w-[92%]`} />
+          <div className={`${SHIMMER} h-3.5 w-[70%]`} />
+        </div>
+
+        <div className={`${SHIMMER} mt-8 h-30 w-full rounded-card`} />
+        <div className={`${SHIMMER} mt-7.5 h-13 w-55 rounded-full`} />
+      </div>
     </div>
   );
 }

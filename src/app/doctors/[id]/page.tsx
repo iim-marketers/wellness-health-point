@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import DoctorAvailability from "@/components/doctors/DoctorAvailability";
+import DoctorPortrait from "@/components/doctors/DoctorPortrait";
 import { ButtonLink } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
@@ -78,14 +78,10 @@ export default async function DoctorDetailPage(
             className="mx-auto max-w-80 rounded-card bg-white p-6 text-center shadow-card lg:mx-0 lg:max-w-none"
             onMount
           >
-            <Image
+            <DoctorPortrait
               src={doctor.image}
               alt={doctor.name}
-              width={340}
-              height={340}
-              sizes="(max-width: 1100px) 320px, 272px"
-              priority
-              className="mb-5 aspect-square w-full rounded-card object-cover"
+              className="mb-5"
             />
           </Reveal>
 

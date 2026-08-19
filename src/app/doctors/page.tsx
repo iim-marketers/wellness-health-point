@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import BengaliTeamPoster from "@/components/doctors/BengaliTeamPoster";
 import DoctorGrid from "@/components/doctors/DoctorGrid";
 import Hero, { HeroContent } from "@/components/layout/Hero";
 import Alert from "@/components/ui/Alert";
@@ -8,9 +9,9 @@ import { ButtonLink } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
 import FeatureCard from "@/components/ui/FeatureCard";
 import { EmptyState } from "@/components/ui/Loading";
-import { RevealGroup } from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 import SectionTitle from "@/components/ui/SectionTitle";
+import SwipeRow from "@/components/ui/SwipeRow";
 import { toErrorMessage } from "@/lib/api/client";
 import { getDoctors } from "@/lib/api/doctors";
 import { OG_IMAGES, pageMetadata } from "@/lib/metadata";
@@ -80,7 +81,7 @@ export default async function DoctorsPage() {
 
           <div className="relative flex w-full items-center justify-center">
             <Image
-              src="/images/collage.png"
+              src="/clinic-images/doctor-collage-eng.png"
               alt="The Wellness Health Point medical team"
               width={620}
               height={480}
@@ -115,17 +116,19 @@ export default async function DoctorsPage() {
         </Container>
       </Section>
 
+      <BengaliTeamPoster />
+
       <Section className="bg-mist">
         <Container>
           <SectionTitle
             eyebrow="Why Our Team"
             title="Dedicated To Better Healthcare"
           />
-          <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <SwipeRow label="Why our team">
             {TEAM_VALUES.map((item) => (
               <FeatureCard key={item.title} {...item} />
             ))}
-          </RevealGroup>
+          </SwipeRow>
         </Container>
       </Section>
     </>
