@@ -21,7 +21,7 @@ export const site = {
   phoneSecondary: "+91 9836406226",
   email: "thewellnesshealthpoint@gmail.com",
   address: "Pansila, Khardah",
-  hours: "Mon–Sat: 9 AM – 8 PM",
+  hours: "Mon–Sun: 9 AM – 8 PM",
   hoursNote: "Sunday: Emergency Only",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916291664625",
   /** Social profiles — set to "" to hide the icon in the footer. */

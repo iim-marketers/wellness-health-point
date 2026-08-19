@@ -3,6 +3,7 @@ import Image from "next/image";
 import EnquiryForm from "@/components/contact/EnquiryForm";
 import DoctorGrid from "@/components/doctors/DoctorGrid";
 import Hero, { HeroContent } from "@/components/layout/Hero";
+import DiagnosticStrip from "@/components/services/DiagnosticStrip";
 import ServiceCard from "@/components/services/ServiceCard";
 import { ButtonLink } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
@@ -11,7 +12,7 @@ import Reveal, { RevealGroup } from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { getDoctors } from "@/lib/api/doctors";
-import { getServices } from "@/lib/api/services";
+import { getDiagnostics, getServices } from "@/lib/api/services";
 import { OG_IMAGES, pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
@@ -71,7 +72,11 @@ const WHY_US = [
 ];
 
 export default async function HomePage() {
-  const [doctors, services] = await Promise.all([getDoctors(), getServices()]);
+  const [doctors, services, diagnostics] = await Promise.all([
+    getDoctors(),
+    getServices(),
+    getDiagnostics(),
+  ]);
 
   return (
     <>
@@ -157,12 +162,19 @@ export default async function HomePage() {
 
       <Section className="bg-mist">
         <Container>
-          <SectionTitle eyebrow="WHAT WE OFFER" title="Our Services" />
+          <SectionTitle
+            eyebrow="WHAT WE OFFER"
+            title="Our Services"
+            description="Six consulting departments and a diagnostic centre under one roof."
+          />
           <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
           </RevealGroup>
+
+          <DiagnosticStrip diagnostics={diagnostics} />
+
           <Reveal className="mt-10 text-center">
             <ButtonLink href="/services" variant="secondary">
               Explore All Services

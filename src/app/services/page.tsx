@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import Hero, { HeroContent } from "@/components/layout/Hero";
+import DiagnosticCard from "@/components/services/DiagnosticCard";
+import HomeCollectionCallout from "@/components/services/HomeCollectionCallout";
 import ServiceCard from "@/components/services/ServiceCard";
 import Alert from "@/components/ui/Alert";
 import { ButtonLink } from "@/components/ui/button";
@@ -11,15 +13,15 @@ import Reveal, { RevealGroup } from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { toErrorMessage } from "@/lib/api/client";
-import { getServices } from "@/lib/api/services";
+import { getDiagnostics, getServices } from "@/lib/api/services";
 import { OG_IMAGES, pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
-import type { Service } from "@/lib/types";
+import type { Diagnostic, Service } from "@/lib/types";
 
 export const metadata: Metadata = pageMetadata({
   title: "Services",
   description:
-    "Comprehensive healthcare under one roof — general medicine, cardiology, gynecology, orthopedics, diagnostics and preventive health checkups.",
+    "Comprehensive healthcare under one roof — gynecology, ENT, surgery, diabetology, general medicine and pediatrics, plus a full diagnostic centre with home collection.",
   path: "/services",
   image: {
     ...OG_IMAGES.services,
@@ -52,10 +54,14 @@ const PROCESS = [
 
 export default async function ServicesPage() {
   let services: Service[] = [];
+  let diagnostics: Diagnostic[] = [];
   let error: string | undefined;
 
   try {
-    services = await getServices();
+    [services, diagnostics] = await Promise.all([
+      getServices(),
+      getDiagnostics(),
+    ]);
   } catch (caught) {
     error = toErrorMessage(caught);
   }
@@ -72,15 +78,15 @@ export default async function ServicesPage() {
               Comprehensive Healthcare Under One Roof
             </h1>
             <p className="mx-auto mb-7 max-w-140 lg:mx-0">
-              From preventive health checkups to specialized consultations,
-              Wellness Health Point offers expert medical care with modern
-              facilities, experienced doctors, and compassionate treatment for
-              patients of every age.
+              Six consulting departments and a full diagnostic centre in one
+              place — so a consultation, a test and its report never mean three
+              separate trips. Home collection is available if you can&apos;t
+              come in.
             </p>
             <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 md:flex-row lg:justify-start">
               <ButtonLink href="/appointment">Book Appointment</ButtonLink>
-              <ButtonLink href="#services" variant="secondary">
-                View Services
+              <ButtonLink href="#diagnostics" variant="secondary">
+                Diagnostics &amp; Tests
               </ButtonLink>
             </div>
           </div>
@@ -102,8 +108,8 @@ export default async function ServicesPage() {
         <Container>
           <SectionTitle
             eyebrow="Our Specialities"
-            title="Healthcare Services"
-            description="Quality care delivered by experienced professionals."
+            title="Consulting Departments"
+            description="Six specialities, each run by an experienced consultant. Pick the one that matches your concern — call us if you're unsure and we'll guide you."
           />
 
           {error ? (
@@ -118,7 +124,33 @@ export default async function ServicesPage() {
         </Container>
       </Section>
 
-      <Section className="bg-mist">
+      <Section id="diagnostics" className="bg-mist">
+        <Container>
+          <SectionTitle
+            eyebrow="Diagnostic Centre"
+            title="Tests & Diagnostics"
+            description="Every test below is done in-house, and the ones marked can be carried out at your home instead."
+          />
+
+          {error ? (
+            <Alert variant="error">{error}</Alert>
+          ) : (
+            <>
+              <RevealGroup className="grid gap-6 md:grid-cols-2">
+                {diagnostics.map((diagnostic) => (
+                  <DiagnosticCard key={diagnostic.id} diagnostic={diagnostic} />
+                ))}
+              </RevealGroup>
+
+              <Reveal>
+                <HomeCollectionCallout />
+              </Reveal>
+            </>
+          )}
+        </Container>
+      </Section>
+
+      <Section>
         <Container>
           <SectionTitle eyebrow="Our Process" title="Getting Care Is Simple" />
           <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
