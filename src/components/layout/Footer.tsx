@@ -9,8 +9,16 @@ const SOCIAL_BUTTON =
   "flex size-10 items-center justify-center rounded-full border border-white/20 text-[18px] text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10";
 
 const socials = [
-  { href: site.instagram, label: "Follow us on Instagram", icon: "fa-instagram" },
-  { href: site.facebook, label: "Follow us on Facebook", icon: "fa-facebook-f" },
+  {
+    href: site.instagram,
+    label: "Follow us on Instagram",
+    icon: "fa-instagram",
+  },
+  {
+    href: site.facebook,
+    label: "Follow us on Facebook",
+    icon: "fa-facebook-f",
+  },
 ].filter((social) => social.href);
 
 export default function Footer() {
@@ -32,7 +40,10 @@ export default function Footer() {
                   className={SOCIAL_BUTTON}
                   aria-label={social.label}
                 >
-                  <i className={`fa-brands ${social.icon}`} aria-hidden="true" />
+                  <i
+                    className={`fa-brands ${social.icon}`}
+                    aria-hidden="true"
+                  />
                 </a>
               ))}
             </div>
@@ -42,7 +53,11 @@ export default function Footer() {
         <div>
           <h4 className={HEADING}>Quick Links</h4>
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="block py-2.25 hover:text-white md:py-0.75">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="block py-2.25 hover:text-white md:py-0.75"
+            >
               {link.label}
             </Link>
           ))}
@@ -58,7 +73,7 @@ export default function Footer() {
         <div>
           <h4 className={HEADING}>Clinic Hours</h4>
           <p>{site.hours}</p>
-          <p>{site.hoursNote}</p>
+          {/* <p>{site.hoursNote}</p> */}
         </div>
       </div>
 
