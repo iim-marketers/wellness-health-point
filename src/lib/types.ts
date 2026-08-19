@@ -31,6 +31,13 @@ export interface SubmissionPayload {
   reason: string;
 }
 
+/**
+ * A submission as the clinic's notification email sees it.
+ *
+ * Wider than the stored row: `id` and `createdAt` come back from the insert,
+ * while the department, doctor and reason are carried straight through from
+ * the request. Those three are only ever emailed, never written to the table.
+ */
 export interface Submission {
   id: string;
   name: string;

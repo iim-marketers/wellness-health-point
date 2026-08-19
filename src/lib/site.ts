@@ -1,10 +1,7 @@
-const DEFAULT_ORIGIN = "https://wellness-health-point.vercel.app";
+const DEFAULT_ORIGIN = "https://wellness-health-point-omega.vercel.app";
 
 function resolveSiteUrl(): string {
-  const candidate =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-    DEFAULT_ORIGIN;
+  const candidate = process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_ORIGIN;
 
   const withProtocol = /^https?:\/\//.test(candidate)
     ? candidate
@@ -26,10 +23,10 @@ export const site = {
   address: "Pansila, Khardah",
   hours: "Mon–Sat: 9 AM – 8 PM",
   hoursNote: "Sunday: Emergency Only",
-  whatsapp: "916291664625",
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916291664625",
   /** Social profiles — set to "" to hide the icon in the footer. */
-  instagram: "https://www.instagram.com/wellnesshealthpoint/?hl=en",
-  facebook: "",
+  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
+  facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
   mapEmbed:
     "https://www.google.com/maps?q=The+Wellness+Health+Point&output=embed",
 } as const;

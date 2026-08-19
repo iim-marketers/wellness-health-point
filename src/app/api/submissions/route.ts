@@ -4,7 +4,7 @@ import { findDoctor } from "@/lib/data/doctors";
 import { notifyClinic } from "@/lib/server/email";
 import { asString, errorResponse, jsonError } from "@/lib/server/http";
 import { supabaseAdmin } from "@/lib/supabase/server";
-import type { Submission, SubmissionPayload } from "@/lib/types";
+import type { SubmissionPayload } from "@/lib/types";
 import { hasErrors, validateSubmission } from "@/lib/validation";
 
 export async function POST(request: Request) {
@@ -17,7 +17,6 @@ export async function POST(request: Request) {
 
   const wantsDoctor = payload.doctorId !== "";
 
-  // The forms validate as well, but a request can arrive from anywhere.
   const errors = validateSubmission(payload, { requireDoctor: wantsDoctor });
   if (hasErrors(errors)) {
     return jsonError(
@@ -32,17 +31,17 @@ export async function POST(request: Request) {
       return jsonError("The selected doctor is no longer available.", 404);
     }
 
+    // Only the contact details are stored. The doctor, department and reason
+    // exist for the notification below and stop there — the clinic acts on the
+    // email, so a stored copy would be one nothing reads.
     const { data, error } = await supabaseAdmin()
       .from("appointments")
       .insert({
         name: payload.name,
         email: payload.email,
         phone: payload.phone,
-        doctor: doctor?.name ?? null,
-        department: doctor?.department ?? payload.department,
-        reason: payload.reason,
       })
-      .select("id, name, email, phone, doctor, department, reason, created_at")
+      .select("id, created_at")
       .single();
 
     if (error) {
@@ -53,7 +52,18 @@ export async function POST(request: Request) {
       );
     }
 
-    after(() => notifyClinic(toSubmission(data)));
+    after(() =>
+      notifyClinic({
+        id: data.id as string,
+        createdAt: data.created_at as string,
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        doctor: doctor?.name ?? null,
+        department: doctor?.department ?? payload.department,
+        reason: payload.reason,
+      }),
+    );
 
     return Response.json(
       {
@@ -77,18 +87,5 @@ function readPayload(body: unknown): SubmissionPayload {
     department: asString(raw.department),
     doctorId: asString(raw.doctorId),
     reason: asString(raw.reason),
-  };
-}
-
-function toSubmission(row: Record<string, unknown>): Submission {
-  return {
-    id: row.id as string,
-    name: row.name as string,
-    email: row.email as string,
-    phone: row.phone as string,
-    department: row.department as string,
-    doctor: (row.doctor as string | null) ?? null,
-    reason: row.reason as string,
-    createdAt: row.created_at as string,
   };
 }
