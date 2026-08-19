@@ -27,8 +27,7 @@ export const site = {
   /** Social profiles — set to "" to hide the icon in the footer. */
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
   facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
-  mapEmbed:
-    "https://www.google.com/maps?q=The+Wellness+Health+Point&output=embed",
+  mapEmbed: process.env.NEXT_PUBLIC_MAP_EMBED_URL || "",
 } as const;
 
 /** Digits-only number for `tel:` links. */
