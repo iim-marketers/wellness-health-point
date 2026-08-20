@@ -22,7 +22,7 @@ export const site = {
   email:
     process.env.NEXT_PUBLIC_CLINIC_EMAIL || "thewellnesshealthpoint@gmail.com",
   address: process.env.NEXT_PUBLIC_CLINIC_ADDRESS || "Pansila, Khardah",
-  hours: process.env.NEXT_PUBLIC_CLINIC_HOURS || "Mon–Sun: 9 AM – 8 PM",
+  hours: process.env.NEXT_PUBLIC_CLINIC_HOURS || "Mon–Sun: 8 AM – 8 PM",
   // hoursNote: "Sunday: Emergency Only",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916291664625",
   /** Social profiles — set to "" to hide the icon in the footer. */

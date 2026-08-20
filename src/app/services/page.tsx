@@ -9,9 +9,10 @@ import Alert from "@/components/ui/Alert";
 import { ButtonLink } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
 import FeatureCard from "@/components/ui/FeatureCard";
-import Reveal, { RevealGroup } from "@/components/ui/Reveal";
+import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 import SectionTitle from "@/components/ui/SectionTitle";
+import SwipeRow from "@/components/ui/SwipeRow";
 import { toErrorMessage } from "@/lib/api/client";
 import { getDiagnostics, getServices } from "@/lib/api/services";
 import { OG_IMAGES, pageMetadata } from "@/lib/metadata";
@@ -115,11 +116,14 @@ export default async function ServicesPage() {
           {error ? (
             <Alert variant="error">{error}</Alert>
           ) : (
-            <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <SwipeRow
+              label="Consulting departments"
+              gridClassName="md:grid-cols-2 xl:grid-cols-3"
+            >
               {services.map((service) => (
                 <ServiceCard key={service.id} service={service} />
               ))}
-            </RevealGroup>
+            </SwipeRow>
           )}
         </Container>
       </Section>
@@ -136,11 +140,15 @@ export default async function ServicesPage() {
             <Alert variant="error">{error}</Alert>
           ) : (
             <>
-              <RevealGroup className="grid gap-6 md:grid-cols-2">
+              <SwipeRow
+                label="Tests and diagnostics"
+                gridClassName="md:grid-cols-2"
+                slideClassName="w-[86%] sm:w-[60%]"
+              >
                 {diagnostics.map((diagnostic) => (
                   <DiagnosticCard key={diagnostic.id} diagnostic={diagnostic} />
                 ))}
-              </RevealGroup>
+              </SwipeRow>
 
               <Reveal>
                 <HomeCollectionCallout />
@@ -153,11 +161,11 @@ export default async function ServicesPage() {
       <Section>
         <Container>
           <SectionTitle eyebrow="Our Process" title="Getting Care Is Simple" />
-          <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <SwipeRow label="How care works">
             {PROCESS.map((step) => (
               <FeatureCard key={step.title} {...step} />
             ))}
-          </RevealGroup>
+          </SwipeRow>
         </Container>
       </Section>
 

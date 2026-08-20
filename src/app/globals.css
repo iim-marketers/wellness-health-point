@@ -88,6 +88,8 @@
 
   --font-sans: var(--font-inter), Inter, sans-serif;
   --font-display: var(--font-poppins), Poppins, sans-serif;
+  /* Bengali copy — the doctors page shows the team in Bengali too. */
+  --font-bengali: var(--font-noto-bengali), "Noto Sans Bengali", sans-serif;
 
   --shadow-card: 0 10px 30px rgb(0 0 0 / 0.08);
   --shadow-panel: 0 20px 50px rgb(0 0 0 / 0.12);
@@ -170,4 +172,30 @@
 @utility container-page {
   width: min(1200px, 92%);
   margin-inline: auto;
+}
+
+/**
+ * Full-bleed row inside `container-page`.
+ *
+ * Runs to the screen edge — so a horizontal slider reads as "there is more to
+ * the right" rather than as a boxed-in list — while its first and last items
+ * still line up with the page gutter. `4vw` is that gutter (the container is
+ * 92% wide, so 4% either side); exact below the 1200px cap, which is the only
+ * place the sliders are live. `scroll-padding` repeats it so a snapped card
+ * lands on the gutter and not against the bezel.
+ */
+@utility bleed-page {
+  margin-inline: calc(50% - 50vw);
+  padding-inline: 4vw;
+  scroll-padding-inline: 4vw;
+}
+
+/* Swipeable rows keep the scrollbar off: the counter and rail under the row
+   report the position instead. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

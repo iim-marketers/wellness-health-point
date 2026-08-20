@@ -23,30 +23,14 @@ interface OgImage {
 
 const OG_SIZE = { width: 1200, height: 630 } as const;
 
-/**
- * Social cards, built from the clinic's own artwork in `public/clinic-images`.
- * Each one fits the whole picture inside the 1200x630 frame over a blurred
- * copy of itself, because cropping the poster or the signboard to that ratio
- * cuts off the phone number.
- *
- * `clinic` is the signboard carrying the address and phone, which suits
- * contact, booking and the post-booking confirmation alike; `home` and
- * `services` share the flagship poster. `doctors` and the portraits behind
- * `doctorOgImage` are unrelated to that artwork and are left as they were.
- */
 export const OG_IMAGES = {
   home: { url: "/og/home.jpg", ...OG_SIZE },
   clinic: { url: "/og/clinic.jpg", ...OG_SIZE },
   services: { url: "/og/services.jpg", ...OG_SIZE },
-  doctors: { url: "/og/collage.jpg", ...OG_SIZE },
+  doctors: { url: "/og/doctor-collage-eng.jpg", ...OG_SIZE },
   about: { url: "/og/abouts.jpg", ...OG_SIZE },
 } as const;
 
-/**
- * The social crop of a doctor's portrait. Falls back to the team image for a
- * doctor whose photo isn't one of the local files — a remote URL from the
- * backend, say — since no derivative would exist for it.
- */
 export function doctorOgImage(portrait: string) {
   if (!portrait.startsWith("/images/")) return OG_IMAGES.doctors;
 

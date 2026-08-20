@@ -11,6 +11,7 @@ import FeatureCard from "@/components/ui/FeatureCard";
 import Reveal, { RevealGroup } from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 import SectionTitle from "@/components/ui/SectionTitle";
+import SwipeRow from "@/components/ui/SwipeRow";
 import { getDoctors } from "@/lib/api/doctors";
 import { getDiagnostics, getServices } from "@/lib/api/services";
 import { OG_IMAGES, pageMetadata } from "@/lib/metadata";
@@ -121,18 +122,27 @@ export default async function HomePage() {
               </ButtonLink>
             </div>
 
-            <RevealGroup className="grid gap-6 md:grid-cols-3" onMount>
+            {/* Three across even on the narrowest phone — stacked, these three
+                small cards cost a whole screen before the fold. */}
+            <RevealGroup
+              className="grid grid-cols-3 gap-2.5 sm:gap-4 md:gap-6"
+              onMount
+            >
               {HERO_FEATURES.map((feature) => (
                 <div
                   key={feature.title}
-                  className="rounded-card bg-white p-4.5 text-center shadow-card"
+                  className="rounded-card bg-white p-3 text-center shadow-card sm:p-4.5"
                 >
                   <i
-                    className={`mb-3.75 text-[2rem] text-primary ${feature.icon}`}
+                    className={`mb-2 text-[1.4rem] text-primary sm:mb-3.75 sm:text-[2rem] ${feature.icon}`}
                     aria-hidden="true"
                   />
-                  <h4 className="mb-1.5 text-ink">{feature.title}</h4>
-                  <p className="text-[0.9rem]">{feature.description}</p>
+                  <h4 className="mb-1 text-[0.85rem] leading-snug text-ink sm:mb-1.5 sm:text-base">
+                    {feature.title}
+                  </h4>
+                  <p className="text-[0.72rem] leading-snug sm:text-[0.9rem]">
+                    {feature.description}
+                  </p>
                 </div>
               ))}
             </RevealGroup>
@@ -167,11 +177,14 @@ export default async function HomePage() {
             title="Our Services"
             description="Six consulting departments and a diagnostic centre under one roof."
           />
-          <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <SwipeRow
+            label="Our services"
+            gridClassName="md:grid-cols-2 xl:grid-cols-3"
+          >
             {services.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
-          </RevealGroup>
+          </SwipeRow>
 
           <DiagnosticStrip diagnostics={diagnostics} />
 
@@ -189,11 +202,11 @@ export default async function HomePage() {
             eyebrow="WHY CHOOSE US"
             title="Why Choose Wellness Health Point?"
           />
-          <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <SwipeRow label="Why choose us">
             {WHY_US.map((item) => (
               <FeatureCard key={item.title} {...item} />
             ))}
-          </RevealGroup>
+          </SwipeRow>
         </Container>
       </Section>
 

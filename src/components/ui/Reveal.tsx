@@ -15,6 +15,9 @@ const STAGGER = 0.08;
 /** Starts the animation slightly before the element is fully on screen. */
 const VIEWPORT = { once: true, amount: 0.2, margin: "0px 0px -8% 0px" };
 
+/** Shared with SwipeRow, which staggers its slides the same way at `md` up. */
+export { STAGGER as REVEAL_STAGGER, VIEWPORT as REVEAL_VIEWPORT };
+
 const HIDDEN = { opacity: 0, y: RISE };
 const VISIBLE = { opacity: 1, y: 0 };
 
@@ -61,7 +64,7 @@ export default function Reveal({
   );
 }
 
-const itemVariants: Variants = {
+export const revealItemVariants: Variants = {
   hidden: HIDDEN,
   visible: { ...VISIBLE, transition: { duration: DURATION, ease: EASE } },
 };
@@ -107,7 +110,7 @@ export function RevealGroup({
         <motion.div
           key={index}
           data-reveal
-          variants={itemVariants}
+          variants={revealItemVariants}
           className="h-full *:h-full"
         >
           {child}

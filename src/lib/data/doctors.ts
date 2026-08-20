@@ -116,6 +116,24 @@ export const doctors: Doctor[] = [
     },
     // consultationFee: 650,
   },
+  {
+    id: "smarajit-dutta",
+    name: "Dr. Smarajit Dutta",
+    speciality: "General Physician",
+    tagline: "Comprehensive Health Care",
+    qualifications: ["MBBS (WBUHS)", "Registration no. 90382 (WBMC)"],
+    experienceYears: 12,
+    image: "/images/dr-smarajit.png",
+    department: "General Medicine",
+    description:
+      "An experienced general physician providing comprehensive health care. MBBS (WBUHS); Registration no. 90382 (WBMC). Available Thursday, Friday and Saturday, by appointment only.",
+    languages: ["English", "Hindi", "Bengali"],
+    availability: {
+      slots: [{ days: ["Thursday", "Friday", "Saturday"] }],
+      appointmentOnly: true,
+    },
+    // consultationFee: 700,
+  },
 ];
 
 export function findDoctor(id: string): Doctor | undefined {
