@@ -12,13 +12,14 @@ function resolveSiteUrl(): string {
 
 /** Single source of truth for clinic details repeated across the site. */
 export const site = {
-  name: "Wellness Health Point",
+  name: process.env.NEXT_PUBLIC_CLINIC_NAME || "The Wellness Health Point",
   url: resolveSiteUrl(),
   tagline: "Care. Compassion. Excellence.",
   description:
     "Wellness Health Point — compassionate healthcare with experienced doctors, modern diagnostics and patient-focused treatment.",
-  phonePrimary: "+91 6291664625",
-  phoneSecondary: "+91 9836406226",
+  phonePrimary:
+    process.env.NEXT_PUBLIC_CLINIC_PHONE_PRIMARY || "+91 6291664625",
+  phoneSecondary: process.env.NEXT_PUBLIC_CLINIC_PHONE_SECONDARY,
   email:
     process.env.NEXT_PUBLIC_CLINIC_EMAIL || "thewellnesshealthpoint@gmail.com",
   address: process.env.NEXT_PUBLIC_CLINIC_ADDRESS || "Pansila, Khardah",

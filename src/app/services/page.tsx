@@ -143,7 +143,7 @@ export default async function ServicesPage() {
               <SwipeRow
                 label="Tests and diagnostics"
                 gridClassName="md:grid-cols-2"
-                slideClassName="w-[86%] sm:w-[60%]"
+                slideClassName="w-[80%] sm:w-[60%]"
               >
                 {diagnostics.map((diagnostic) => (
                   <DiagnosticCard key={diagnostic.id} diagnostic={diagnostic} />

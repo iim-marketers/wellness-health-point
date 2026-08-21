@@ -49,7 +49,8 @@ export default function Navbar() {
 
     if (pathname !== "/") return;
     if (event.button !== 0) return;
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+      return;
 
     event.preventDefault();
     scrollToTop();
@@ -79,7 +80,7 @@ export default function Navbar() {
             className="h-10 w-10 sm:h-11 sm:w-11"
           />
           <div className="min-w-0">
-            <h2 className="font-display text-[1.1rem] leading-tight font-bold sm:text-[1.4rem]">
+            <h2 className="font-display text-[1rem] leading-tight font-bold sm:text-[1.2rem]">
               {site.name}
             </h2>
             <span className="hidden text-[0.72rem] text-[#777] min-[361px]:block sm:text-[0.8rem]">
