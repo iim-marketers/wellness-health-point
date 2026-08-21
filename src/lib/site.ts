@@ -19,8 +19,7 @@ export const site = {
     "Wellness Health Point — compassionate healthcare with experienced doctors, modern diagnostics and patient-focused treatment.",
   phonePrimary:
     process.env.NEXT_PUBLIC_CLINIC_PHONE_PRIMARY || "+91 6291664625",
-  phoneSecondary:
-    process.env.NEXT_PUBLIC_CLINIC_PHONE_SECONDARY || "+91 8910021661",
+  phoneSecondary: process.env.NEXT_PUBLIC_CLINIC_PHONE_SECONDARY,
   email:
     process.env.NEXT_PUBLIC_CLINIC_EMAIL || "thewellnesshealthpoint@gmail.com",
   address: process.env.NEXT_PUBLIC_CLINIC_ADDRESS || "Pansila, Khardah",
