@@ -60,7 +60,7 @@ export const doctors: Doctor[] = [
     tagline: "Ear, Nose & Throat Care",
     qualifications: ["MBBS", "MS (ENT)"],
     experienceYears: 8,
-    image: "/images/dr.riya.jpeg",
+    image: "/images/dr-riya.png",
     department: "ENT",
     description:
       "An experienced specialist consulting regularly at Khardah Wellness Health Point, with modern solutions for ear, nose, throat and head-and-neck problems. MBBS (Hons), MSc, DNB. Available Tuesday, Wednesday, Friday, Saturday and Sunday evenings, by appointment only.",
@@ -83,7 +83,7 @@ export const doctors: Doctor[] = [
     tagline: "Advanced Surgical Care",
     qualifications: ["MBBS", "MS (General Surgery)", "FMAS"],
     experienceYears: 18,
-    image: "/images/dr-manas.jpeg",
+    image: "/images/dr-manas.png",
     department: "Surgery",
     description:
       "An experienced general and laparoscopic surgeon. MBBS, MS (General Surgery), DNB (Surgery); Fellowship in Minimal Access Surgery (FMAS); Fellow of the Association of Surgeons of India (FAIS). Registration no. 72493 (WBMC). Available by appointment only.",
@@ -102,7 +102,7 @@ export const doctors: Doctor[] = [
     tagline: "Diabetes & Lifestyle Management",
     qualifications: ["MBBS", "MD (General Medicine)", "PGDip (Diabetology)"],
     experienceYears: 14,
-    image: "/images/dr.ayan.jpeg",
+    image: "/images/dr-ayandey.jpg",
     department: "Diabetology",
     description:
       "Physician and diabetologist — from everyday physical complaints through to blood sugar control, expert advice for a healthy, worry-free life. Diabetes management, lifestyle disorder care and personalised treatment. Available Monday and Tuesday, and on Wednesday mornings, by appointment only.",
