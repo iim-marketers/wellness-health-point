@@ -13,24 +13,6 @@ import type { Doctor } from "@/lib/types";
  */
 export const doctors: Doctor[] = [
   {
-    id: "sayan-bose",
-    name: "Dr. Sayan Bose",
-    speciality: "Consultant Paediatrician",
-    tagline: "Child Healthcare & Growth Monitoring",
-    qualifications: ["MBBS", "MD (Paediatrics)"],
-    experienceYears: 12,
-    image: "/images/dr.sayan.jpeg",
-    department: "Pediatrics",
-    description:
-      "An experienced and caring paediatrician at Khardah Wellness Health Point, consulting for the good health and proper development of your child. Child-friendly care, complete growth monitoring and compassionate consultation. Available Tuesday, Thursday and Saturday, on appointment only.",
-    languages: ["English", "Hindi", "Bengali"],
-    availability: {
-      slots: [{ days: ["Tuesday", "Thursday", "Saturday"] }],
-      appointmentOnly: true,
-    },
-    // consultationFee: 600,
-  },
-  {
     id: "sayantani-bhanja",
     name: "Dr. Sayantani Bhanja",
     speciality: "Consultant Gynaecologist",
@@ -76,6 +58,7 @@ export const doctors: Doctor[] = [
     },
     // consultationFee: 600,
   },
+
   {
     id: "manas-mukul-mondal",
     name: "Dr. Manas Mukul Mondal",
@@ -115,6 +98,41 @@ export const doctors: Doctor[] = [
       appointmentOnly: true,
     },
     // consultationFee: 650,
+  },
+  {
+    id: "subhashis-dey",
+    name: "Dr. Subhashis Dey",
+    speciality: "Consultant Cardiologist",
+    tagline: "Heart Health & Cardiac Care",
+    qualifications: ["MBBS", "MD Medicine", "DRNB Cardiology"],
+    experienceYears: 12,
+    image: "/clinic-images/dr-subhashis-dey.png",
+    department: "Cardiology",
+    description:
+      "An experienced cardiologist at Khardah Wellness Health Point, providing comprehensive cardiac care. Heart health, blood pressure management, cholesterol control and personalized treatment. Available Tuesday evenings, on appointment only.",
+    languages: ["English", "Hindi", "Bengali"],
+    availability: {
+      slots: [{ days: ["Tuesday"], session: "Evening" }],
+      appointmentOnly: true,
+    },
+  },
+  {
+    id: "sayan-bose",
+    name: "Dr. Sayan Bose",
+    speciality: "Consultant Paediatrician",
+    tagline: "Child Healthcare & Growth Monitoring",
+    qualifications: ["MBBS", "MD (Paediatrics)"],
+    experienceYears: 12,
+    image: "/images/dr.sayan.jpeg",
+    department: "Pediatrics",
+    description:
+      "An experienced and caring paediatrician at Khardah Wellness Health Point, consulting for the good health and proper development of your child. Child-friendly care, complete growth monitoring and compassionate consultation. Available Tuesday, Thursday and Saturday, on appointment only.",
+    languages: ["English", "Hindi", "Bengali"],
+    availability: {
+      slots: [{ days: ["Tuesday", "Thursday", "Saturday"] }],
+      appointmentOnly: true,
+    },
+    // consultationFee: 600,
   },
   {
     id: "smarajit-dutta",

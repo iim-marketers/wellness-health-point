@@ -81,7 +81,7 @@ export default async function DoctorsPage() {
 
           <div className="relative flex w-full items-center justify-center">
             <Image
-              src="/clinic-images/doctor-collage-eng.png"
+              src="/clinic-images/doc-collage-eng.png"
               alt="The Wellness Health Point medical team"
               width={620}
               height={480}

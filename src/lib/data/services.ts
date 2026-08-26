@@ -44,13 +44,15 @@ export const services: Service[] = [
       "Child healthcare from newborn to teenager — growth monitoring, vaccinations and common childhood illnesses.",
     icon: "fa-solid fa-baby",
   },
+  {
+    id: "cardiology",
+    title: "Cardiology",
+    description:
+      "Heart health, blood pressure, cholesterol and other cardiovascular concerns.",
+    icon: "fa-solid fa-heart-pulse",
+  },
 ];
 
-/**
- * Tests run in-house. `atHome` marks the ones a technician can also do at the
- * patient's address, which is what the cards badge and the strip below them
- * summarise — plain English, because most patients won't know the acronyms.
- */
 export const diagnostics: Diagnostic[] = [
   {
     id: "pathology",
