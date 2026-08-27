@@ -11,7 +11,6 @@ import { site } from "@/lib/site";
  * set in the root layout.
  */
 
-/** Used when a page doesn't set its own title (i.e. the home page). */
 export const DEFAULT_TITLE = `${site.name} | Compassionate Healthcare`;
 
 interface OgImage {
@@ -27,7 +26,7 @@ export const OG_IMAGES = {
   home: { url: "/og/home.jpg", ...OG_SIZE },
   clinic: { url: "/og/clinic.jpg", ...OG_SIZE },
   services: { url: "/og/services.jpg", ...OG_SIZE },
-  doctors: { url: "/og/doctor-collage-eng.jpg", ...OG_SIZE },
+  doctors: { url: "/og/doctor-collage-beng.jpg", ...OG_SIZE },
   about: { url: "/og/abouts.jpg", ...OG_SIZE },
 } as const;
 
