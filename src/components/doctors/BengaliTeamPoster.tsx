@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 
 /** The clinic's own artwork; opened at full size when the panel is tapped. */
-const POSTER = "/clinic-images/doctor-collage-beng.png";
+const POSTER = "/images/new-beng-collage.png";
 
 export default function BengaliTeamPoster() {
   return (
