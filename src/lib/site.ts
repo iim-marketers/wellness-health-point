@@ -38,7 +38,16 @@ export const site = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916291664625",
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
   facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
-  mapEmbed: process.env.NEXT_PUBLIC_MAP_EMBED_URL || "",
+  /**
+   * The Google Business Profile, addressed by its CID so both URLs resolve to
+   * the listing itself rather than to whatever a name search happens to match.
+   */
+  mapsListing:
+    process.env.NEXT_PUBLIC_MAPS_LISTING_URL ||
+    "https://maps.google.com/?cid=8439779204518993386",
+  mapEmbed:
+    process.env.NEXT_PUBLIC_MAP_EMBED_URL ||
+    "https://maps.google.com/maps?cid=8439779204518993386&output=embed",
 } as const;
 
 /** Digits-only number for `tel:` links. */

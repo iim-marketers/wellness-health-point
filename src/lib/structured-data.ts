@@ -2,11 +2,6 @@ import { diagnostics, services } from "@/lib/data/services";
 import { site } from "@/lib/site";
 import type { Doctor } from "@/lib/types";
 
-/**
- * schema.org structured data, rendered as JSON-LD by `<JsonLd>`.
- * Validate changes with https://search.google.com/test/rich-results.
- */
-
 /** JSON-LD needs absolute URLs; `metadataBase` only resolves the meta tags. */
 function abs(path: string): string {
   return `${site.url}${path}`;
@@ -48,7 +43,7 @@ function postalAddress() {
 
 /** The clinic itself. Rendered once per page from the root layout. */
 export function clinicSchema() {
-  const sameAs = [site.instagram].filter(Boolean);
+  const sameAs = [site.mapsListing, site.instagram].filter(Boolean);
   const specialities = services
     .map((service) => SPECIALITY_BY_DEPARTMENT[service.title])
     .filter(Boolean);
@@ -79,6 +74,7 @@ export function clinicSchema() {
       "@type": "AdministrativeArea",
       name: `${site.locality}, ${site.region}`,
     },
+    ...(site.mapsListing ? { hasMap: site.mapsListing } : {}),
     medicalSpecialty: [...new Set(specialities)],
     availableService: diagnostics.map((test) => ({
       "@type": "MedicalTest",
