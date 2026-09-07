@@ -1,4 +1,4 @@
-const DEFAULT_ORIGIN = "https://wellness-health-point-omega.vercel.app";
+const DEFAULT_ORIGIN = "https://www.thewellnesshealthpoint.com";
 
 function resolveSiteUrl(): string {
   const candidate = process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_ORIGIN;
