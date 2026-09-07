@@ -1,4 +1,4 @@
-const DEFAULT_ORIGIN = "https://wellness-health-point-omega.vercel.app";
+const DEFAULT_ORIGIN = "https://www.thewellnesshealthpoint.com";
 
 function resolveSiteUrl(): string {
   const candidate = process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_ORIGIN;
@@ -24,9 +24,18 @@ export const site = {
     process.env.NEXT_PUBLIC_CLINIC_EMAIL || "thewellnesshealthpoint@gmail.com",
   address: process.env.NEXT_PUBLIC_CLINIC_ADDRESS || "Pansila, Khardah",
   hours: process.env.NEXT_PUBLIC_CLINIC_HOURS || "Mon–Sun: 8 AM – 8 PM",
-  // hoursNote: "Sunday: Emergency Only",
+
+  street: process.env.NEXT_PUBLIC_CLINIC_STREET || "Pansila",
+  locality: process.env.NEXT_PUBLIC_CLINIC_LOCALITY || "Khardah",
+  region: process.env.NEXT_PUBLIC_CLINIC_REGION || "West Bengal",
+
+  country: process.env.NEXT_PUBLIC_CLINIC_COUNTRY || "IN",
+  postalCode: process.env.NEXT_PUBLIC_CLINIC_POSTAL_CODE || "",
+  opens: process.env.NEXT_PUBLIC_CLINIC_OPENS || "08:00",
+  closes: process.env.NEXT_PUBLIC_CLINIC_CLOSES || "20:00",
+  latitude: process.env.NEXT_PUBLIC_CLINIC_LATITUDE || "",
+  longitude: process.env.NEXT_PUBLIC_CLINIC_LONGITUDE || "",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "916291664625",
-  /** Social profiles — set to "" to hide the icon in the footer. */
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
   facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
   mapEmbed: process.env.NEXT_PUBLIC_MAP_EMBED_URL || "",
