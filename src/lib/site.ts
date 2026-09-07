@@ -30,7 +30,7 @@ export const site = {
   region: process.env.NEXT_PUBLIC_CLINIC_REGION || "West Bengal",
 
   country: process.env.NEXT_PUBLIC_CLINIC_COUNTRY || "IN",
-  postalCode: process.env.NEXT_PUBLIC_CLINIC_POSTAL_CODE || "",
+  postalCode: process.env.NEXT_PUBLIC_CLINIC_POSTAL_CODE || "700110",
   opens: process.env.NEXT_PUBLIC_CLINIC_OPENS || "08:00",
   closes: process.env.NEXT_PUBLIC_CLINIC_CLOSES || "20:00",
   latitude: process.env.NEXT_PUBLIC_CLINIC_LATITUDE || "",
