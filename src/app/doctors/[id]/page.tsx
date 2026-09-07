@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import DoctorAvailability from "@/components/doctors/DoctorAvailability";
 import DoctorPortrait from "@/components/doctors/DoctorPortrait";
+import JsonLd from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
@@ -11,9 +12,9 @@ import { ApiError } from "@/lib/api/client";
 import { getDoctorById, getDoctors } from "@/lib/api/doctors";
 import { doctorOgImage, pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
+import { breadcrumbSchema, physicianSchema } from "@/lib/structured-data";
 import type { Doctor } from "@/lib/types";
 
-/** Pre-renders a static page per doctor; new ones are rendered on demand. */
 export async function generateStaticParams() {
   try {
     const doctors = await getDoctors();
@@ -58,7 +59,6 @@ export async function generateMetadata(
 const SUBHEADING =
   "mt-6.5 mb-3 font-display text-[1.2rem] font-semibold text-ink";
 
-/** "Dr. Sayan Bose" -> "Dr. Bose", for buttons and running text. */
 function shortName(name: string): string {
   const parts = name.split(" ");
   return parts.length > 1 ? `${parts[0]} ${parts.at(-1)}` : name;
@@ -72,6 +72,16 @@ export default async function DoctorDetailPage(
 
   return (
     <Section>
+      <JsonLd
+        data={[
+          physicianSchema(doctor),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Doctors", path: "/doctors" },
+            { name: doctor.name, path: `/doctors/${doctor.id}` },
+          ]),
+        ]}
+      />
       <Container>
         <div className="grid items-start gap-7.5 lg:grid-cols-[320px_1fr] lg:gap-12.5">
           <Reveal

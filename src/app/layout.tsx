@@ -7,8 +7,10 @@ import "./globals.css";
 import FloatingButtons from "@/components/layout/FloatingButtons";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import JsonLd from "@/components/seo/JsonLd";
 import { DEFAULT_TITLE, OG_IMAGES } from "@/lib/metadata";
 import { site } from "@/lib/site";
+import { clinicSchema } from "@/lib/structured-data";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({
@@ -87,6 +89,10 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
 
 export const viewport: Viewport = {
@@ -115,6 +121,7 @@ export default function RootLayout({
         </noscript>
       </head>
       <body>
+        <JsonLd data={clinicSchema()} />
         <Navbar />
         <main>{children}</main>
         <Footer />
