@@ -2,14 +2,6 @@ import type { Doctor } from "@/lib/types";
 
 /**
  * Seed data for the clinic's doctors, taken from the original static site.
- *
- * Each `description` is the doctor's About text, and it says only what that
- * doctor's own poster in `public/images` says — headline, body line, feature
- * pills, and the qualifications and availability where the poster prints them.
- * Two of the posters are in Bengali; those are translated, not embellished.
- * Nothing that is not on the poster belongs in it.
- * This is what the placeholder API routes serve until the Node.js backend
- * takes over (see NEXT_PUBLIC_API_URL in .env.example).
  */
 export const doctors: Doctor[] = [
   {
@@ -27,7 +19,7 @@ export const doctors: Doctor[] = [
     availability: {
       slots: [
         {
-          days: ["Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"],
+          days: ["Tuesday", "Wednesday", "Friday", "Saturday"],
           session: "Evening",
         },
       ],
@@ -50,7 +42,7 @@ export const doctors: Doctor[] = [
     availability: {
       slots: [
         {
-          days: ["Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"],
+          days: ["Tuesday", "Wednesday", "Friday", "Saturday"],
           session: "Evening",
         },
       ],
