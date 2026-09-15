@@ -38,12 +38,6 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  /**
-   * On the home page the logo links to the page you are already on, which Next
-   * treats as a no-op — so a reader partway down the page gets nothing. Scroll
-   * instead. Modified and non-primary clicks are left alone so "open in new
-   * tab" still works.
-   */
   const onLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     close();
 
@@ -68,15 +62,12 @@ export default function Navbar() {
           className="flex min-w-0 items-center gap-3 text-ink"
           aria-label={`${site.name} — home`}
         >
-          {/* <i
-            className="fa-solid fa-heart-pulse text-[1.7rem] text-primary sm:text-[2rem]"
-            aria-hidden="true"
-          /> */}
           <Image
             src="/images/logo-mark.png"
             alt={`${site.name} logo`}
             width={38}
             height={38}
+            loading="eager"
             className="h-10 w-10 sm:h-11 sm:w-11"
           />
           <div className="min-w-0">
@@ -103,8 +94,6 @@ export default function Navbar() {
           />
         </button>
 
-        {/* Below lg this is an absolutely-positioned drawer anchored to the
-            sticky header, so it spans the full viewport width. */}
         <nav
           id="primary-navigation"
           aria-label="Primary"
@@ -143,18 +132,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-
-          {/* <div className="px-[6%] py-4.5 lg:hidden">
-            <ButtonLink
-              href="/appointment"
-              onClick={close}
-              block={false}
-              className="w-full"
-            >
-              <i className="fa-solid fa-calendar-check" aria-hidden="true" />
-              Book Appointment
-            </ButtonLink>
-          </div> */}
         </nav>
 
         {/* `max-lg:hidden`, not `hidden lg:inline-flex` — an unprefixed `hidden`

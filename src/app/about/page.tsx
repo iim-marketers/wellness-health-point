@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
+import ImageSkeleton from "@/components/image-skeleton";
 import Hero, { HeroContent } from "@/components/layout/Hero";
 import MapSection from "@/components/layout/MapSection";
 import { ButtonLink } from "@/components/ui/button";
@@ -90,13 +90,14 @@ export default function AboutPage() {
           </div>
 
           <div className="relative flex w-full items-center justify-center">
-            <Image
+            <ImageSkeleton
               src="/clinic-images/4.jpeg"
               alt={`${site.name} — multi-speciality doctors clinic`}
               width={620}
               height={620}
               priority
-              className="mx-auto h-auto max-w-full rounded-card lg:max-w-120"
+              wrapperClassName="mx-auto w-full max-w-155 rounded-card lg:max-w-120"
+              className="h-auto w-full rounded-card"
             />
           </div>
         </HeroContent>
