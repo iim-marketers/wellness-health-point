@@ -9,6 +9,7 @@ import FormCard, {
 import Alert from "@/components/ui/Alert";
 import { InputField, SelectField, TextareaField } from "@/components/ui/Field";
 import { Spinner } from "@/components/ui/Loading";
+import TermsConsent from "@/components/ui/TermsConsent";
 import { toErrorMessage } from "@/lib/api/client";
 import { sendSubmission } from "@/lib/api/submissions";
 import { departments } from "@/lib/data/services";
@@ -40,6 +41,7 @@ export default function EnquiryForm({
 }: EnquiryFormProps) {
   const [values, setValues] = useState<SubmissionPayload>(EMPTY);
   const [errors, setErrors] = useState<Errors<SubmissionPayload>>({});
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error";
@@ -63,6 +65,7 @@ export default function EnquiryForm({
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!agreedToTerms) return;
     setStatus(undefined);
 
     const nextErrors = validateSubmission(values);
@@ -74,6 +77,7 @@ export default function EnquiryForm({
       const response = await sendSubmission(values);
       setStatus({ type: "success", message: response.message });
       setValues(EMPTY);
+      setAgreedToTerms(false);
     } catch (error) {
       setStatus({ type: "error", message: toErrorMessage(error) });
     } finally {
@@ -158,7 +162,17 @@ export default function EnquiryForm({
           onChange={(event) => setField("reason", event.target.value)}
         />
 
-        <button type="submit" disabled={submitting} className={SUBMIT_BUTTON}>
+        <TermsConsent
+          id="enquiry-terms"
+          checked={agreedToTerms}
+          onCheckedChange={setAgreedToTerms}
+        />
+
+        <button
+          type="submit"
+          disabled={submitting || !agreedToTerms}
+          className={SUBMIT_BUTTON}
+        >
           {submitting ? (
             <>
               <Spinner />

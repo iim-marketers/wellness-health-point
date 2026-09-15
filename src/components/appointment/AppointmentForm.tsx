@@ -10,6 +10,7 @@ import FormCard, {
 import Alert from "@/components/ui/Alert";
 import { InputField, SelectField, TextareaField } from "@/components/ui/Field";
 import { Spinner } from "@/components/ui/Loading";
+import TermsConsent from "@/components/ui/TermsConsent";
 import { toErrorMessage } from "@/lib/api/client";
 import { sendSubmission } from "@/lib/api/submissions";
 import type { Doctor, SubmissionPayload } from "@/lib/types";
@@ -35,6 +36,7 @@ export default function AppointmentForm({ doctors }: { doctors: Doctor[] }) {
   });
 
   const [errors, setErrors] = useState<Errors<SubmissionPayload>>({});
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string>();
 
@@ -52,6 +54,7 @@ export default function AppointmentForm({ doctors }: { doctors: Doctor[] }) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!agreedToTerms) return;
     setSubmitError(undefined);
 
     const nextErrors = validateSubmission(values, { requireDoctor: true });
@@ -172,7 +175,17 @@ export default function AppointmentForm({ doctors }: { doctors: Doctor[] }) {
           onChange={(event) => setField("reason", event.target.value)}
         />
 
-        <button type="submit" disabled={submitting} className={SUBMIT_BUTTON}>
+        <TermsConsent
+          id="terms"
+          checked={agreedToTerms}
+          onCheckedChange={setAgreedToTerms}
+        />
+
+        <button
+          type="submit"
+          disabled={submitting || !agreedToTerms}
+          className={SUBMIT_BUTTON}
+        >
           {submitting ? (
             <>
               <Spinner />
