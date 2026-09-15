@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import ImageSkeleton from "@/components/image-skeleton";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
@@ -27,12 +26,13 @@ export default function BengaliTeamPoster() {
           </div>
 
           <div className="group relative mx-auto block w-full max-w-115 rounded-card bg-white p-2.5 shadow-panel sm:p-3">
-            <Image
+            <ImageSkeleton
               src={POSTER}
               alt="Wellness Health Point's specialist doctors, their qualifications and clinic days, listed in Bengali"
               width={1122}
               height={1402}
               sizes="(min-width: 1101px) 460px, 92vw"
+              wrapperClassName="rounded-[calc(var(--radius-card)-6px)]"
               className="h-auto w-full rounded-[calc(var(--radius-card)-6px)]"
             />
           </div>

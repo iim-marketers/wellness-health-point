@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 import BengaliTeamPoster from "@/components/doctors/BengaliTeamPoster";
 import DoctorGrid from "@/components/doctors/DoctorGrid";
+import ImageSkeleton from "@/components/image-skeleton";
 import Hero, { HeroContent } from "@/components/layout/Hero";
 import Alert from "@/components/ui/Alert";
 import { ButtonLink } from "@/components/ui/button";
@@ -80,13 +80,14 @@ export default async function DoctorsPage() {
           </div>
 
           <div className="relative flex w-full items-center justify-center">
-            <Image
+            <ImageSkeleton
               src="/clinic-images/doc-collage-eng.png"
               alt="The Wellness Health Point medical team"
               width={620}
               height={480}
               priority
-              className="mx-auto h-auto max-w-full rounded-card lg:max-w-120"
+              wrapperClassName="mx-auto w-full max-w-155 rounded-card lg:max-w-120"
+              className="h-auto w-full rounded-card"
             />
           </div>
         </HeroContent>

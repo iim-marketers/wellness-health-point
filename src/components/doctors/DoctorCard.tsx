@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { ButtonLink } from "@/components/ui/button";
+import ImageSkeleton from "@/components/image-skeleton";
 import type { Doctor } from "@/lib/types";
 
 interface DoctorCardProps {
@@ -17,7 +16,6 @@ interface DoctorCardProps {
  */
 export default function DoctorCard({
   doctor,
-  showBooking = false,
   priority = false,
 }: DoctorCardProps) {
   return (
@@ -29,14 +27,15 @@ export default function DoctorCard({
         href={`/doctors/${doctor.id}`}
         aria-label={`View ${doctor.name}'s profile`}
       >
-        <Image
+        <ImageSkeleton
           src={doctor.image}
           alt={doctor.name}
           width={150}
           height={150}
           sizes="150px"
           priority={priority}
-          className="mx-auto mb-5 size-37.5 rounded-full object-cover"
+          wrapperClassName="mx-auto mb-5 size-37.5 rounded-full"
+          className="size-full rounded-full object-cover"
         />
       </Link>
 

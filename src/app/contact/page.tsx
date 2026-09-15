@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 import EnquiryForm from "@/components/contact/EnquiryForm";
+import ImageSkeleton from "@/components/image-skeleton";
 import Hero, { HeroContent } from "@/components/layout/Hero";
 import MapSection from "@/components/layout/MapSection";
 import { ButtonLink } from "@/components/ui/button";
@@ -62,13 +62,14 @@ export default function ContactPage() {
           </div>
 
           <div className="relative flex w-full items-center justify-center">
-            <Image
+            <ImageSkeleton
               src="/clinic-images/1.jpeg"
               alt={`${site.name} signage — ${site.address}, ${site.phonePrimary}`}
               width={800}
               height={200}
               priority
-              className="mx-auto h-auto max-w-full rounded-card shadow-card"
+              wrapperClassName="mx-auto w-full max-w-200 rounded-card shadow-card"
+              className="h-auto w-full rounded-card"
             />
           </div>
         </HeroContent>
